@@ -33,10 +33,22 @@ export class NewTaskPage {
       photo:this.photo
     }
 
-    this.storage.set('key',data);
-    this.storage.set('n',1);
+    this.storage.get('key').then((val) => {
+      if(val == null){
+        this.storage.set('key' , [data]).then((val) => {
+          this.navCtrl.pop();
+        });
+      }
+      else{
+        console.log(val);
+        val.push(data);
+        this.storage.set('key' , val).then((val) => {
+          this.navCtrl.pop();
+        });
+      }
+    });
 
-    this.navCtrl.pop();
+    
 
   }
 
