@@ -28,21 +28,10 @@ export class HomePage {
   }
 
   delete(index){
-    this.storage.get("key").then((val)=>{
-      //let i
-      //for(i=0;i<val.length;i++)
-      //{
-      //  if(val[i].title==title) {
-      //    val.splice(i,1);
-      //    console.log(val[i]); }
-      //}
-      this.task.splice(index,1)
-      this.storage.set("key",val)
-    })
-
-    if(this.task[0]==null)
-    {
-      this.n=0
+    
+    if(this.n != 0){
+      this.task.splice(index , 1);
+      this.storage.set('key' , this.task);
     }
     
   }
@@ -68,10 +57,8 @@ export class HomePage {
 
       //this.title = val['title'];
       //this.description = val['description'];
-      this.task.push(val)
-    })
-    this.storage.get('n').then((x)=>{
-      this.n=x;
+      this.task = val;
+      this.n = this.task.length;
     })
 
   }
