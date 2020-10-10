@@ -38,12 +38,14 @@ export class HomePage {
       //}
       this.task.splice(index,1)
       this.storage.set("key",val)
+      this.storage.set('task',this.task)
     })
 
-    if(this.task[0]==null)
-    {
-      this.n=0
-    }
+    //if(this.task[0]==null)
+    //{
+    //  this.n=0
+    //}
+    this.n=this.task.length;
     
   }
 
@@ -56,6 +58,7 @@ export class HomePage {
                 { text: 'Update', handler: data => {
                   this.task[index].title=data.editTitle;
                   this.task[index].description=data.editDescription;
+                  this.storage.set('task',this.task);
                 }}]
     });
     alert.present();
@@ -69,10 +72,12 @@ export class HomePage {
       //this.title = val['title'];
       //this.description = val['description'];
       this.task.push(val)
+      this.n=this.task.length;
+      this.storage.set('task',this.task);
     })
-    this.storage.get('n').then((x)=>{
-      this.n=x;
-    })
+    //this.storage.get('n').then((x)=>{
+    //  this.n=x;
+    //})
 
   }
 

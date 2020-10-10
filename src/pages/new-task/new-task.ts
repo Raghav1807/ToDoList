@@ -34,7 +34,7 @@ export class NewTaskPage {
     }
 
     this.storage.set('key',data);
-    this.storage.set('n',1);
+    //this.storage.set('n',1);
 
     this.navCtrl.pop();
 
