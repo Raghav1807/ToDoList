@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NewTaskPage } from '../pages/new-task/new-task';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import {IonicStorageModule} from '@ionic/storage';
 
@@ -30,6 +31,7 @@ import {IonicStorageModule} from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

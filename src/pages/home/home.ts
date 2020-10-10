@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { NewTaskPage } from '../new-task/new-task';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import {Storage} from '@ionic/storage';
 
@@ -14,8 +15,9 @@ export class HomePage {
   //public  description:any;
   //public task: Task[{title}];
   task=[]
+  n=0;
 
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController , public storage:Storage) {
+  constructor(private camera: Camera, public navCtrl: NavController,public alertCtrl: AlertController , public storage:Storage) {
   }
 
 
@@ -37,6 +39,11 @@ export class HomePage {
       this.task.splice(index,1)
       this.storage.set("key",val)
     })
+
+    if(this.task[0]==null)
+    {
+      this.n=0
+    }
     
   }
 
@@ -44,7 +51,7 @@ export class HomePage {
     let alert=this.alertCtrl.create({
       title:'Update Task?',
       message: 'Type in your new task to update...',
-      inputs: [{ name: 'editTitle', placeholder: 'Title'},{ name: 'editDescription', placeholder: 'Description'}],
+      inputs: [{ name: 'editTitle', placeholder: 'Title',value:this.task[index].title},{ name: 'editDescription', placeholder: 'Description',value:this.task[index].description}],
       buttons: [{ text: 'Cancel', role: 'cancel'},
                 { text: 'Update', handler: data => {
                   this.task[index].title=data.editTitle;
@@ -62,6 +69,9 @@ export class HomePage {
       //this.title = val['title'];
       //this.description = val['description'];
       this.task.push(val)
+    })
+    this.storage.get('n').then((x)=>{
+      this.n=x;
     })
 
   }

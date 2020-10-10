@@ -7,9 +7,10 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngFor="let todo of task; let i=index">
+  <ion-list *ngFor="let todo of task; let i=index" >
  
-  <ion-card>
+  <ion-card *ngIf="n==1">
+    <div style="width: 50px; height: 50px; float: left;"><img src="{{todo.photo}}" alt=""></div>
     <ion-card-header style="font-weight: bold;">
       {{todo.title}}
     </ion-card-header>
